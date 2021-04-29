@@ -90,3 +90,29 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: check_payment_status
+  examples: |
+    - i want to check if a payment is complete
+    - please check a payment status
+    - is my payment done
+    - has the payment been made
+    - check payment status
+    - can you please check the payment status
+    - can you pls check if payment id [81f1ff6834ce](payment_id)
+    - whats the status of the payment id [b448f0840a6a](payment_id)
+    - is the payment with id [7f2a98c13698](payment_id) complete
+
+- intent: get_payment_id
+  examples: |
+    - [7f2a98c45698](payment_id)
+    - payment id is [6d026293f631](payment_id)
+    - [1bc32aa0054d](payment_id)
+    - so the id is [b213e204861e](payment_id)
+    - this is the id [511a0069ea26](payment_id)
+    - payment id [b213e20sd21e](payment_id)
+
+- synonym: payment id
+  examples: |
+    - id for payment
+    - payment id

@@ -28,3 +28,13 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story:  check payment status
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: check_payment_status
+    - action: utter_let_me_check
+    - intent: get_payment_id
+    - action: utter_payment_id_check_result
+

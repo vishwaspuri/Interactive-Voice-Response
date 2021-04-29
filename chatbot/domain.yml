@@ -8,6 +8,12 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - check_payment_status
+  - get_payment_id
+
+
+entities:
+  - payment_id
 
 responses:
   utter_greet:
@@ -28,6 +34,12 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+  utter_let_me_check:
+  - text: "Let me check. Please tell me the payment id?"
+
+  utter_payment_id_check_result:
+    - text: "The payment is complete"
 
 session_config:
   session_expiration_time: 60
