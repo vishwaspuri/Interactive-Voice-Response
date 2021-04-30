@@ -36,5 +36,18 @@ stories:
     - intent: check_payment_status
     - action: utter_let_me_check
     - intent: get_payment_id
-    - action: utter_payment_id_check_result
+      entities:
+        - payment_id:
+    - action: action_payment_status
+
+
+- story: check payment status directly
+  steps:
+    - intent: check_payment_status
+    - action: utter_let_me_check
+    - intent: get_payment_id
+      entities:
+        - payment_id:
+    - action: action_payment_status
+
 
