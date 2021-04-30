@@ -29,25 +29,25 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story:  check payment status
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: check_payment_status
-    - action: utter_let_me_check
-    - intent: get_payment_id
-      entities:
-        - payment_id:
-    - action: action_payment_status
+# - story:  check payment status
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: check_payment_status
+#     - action: utter_let_me_check
+#     - intent: get_payment_id
+#       entities:
+#         - payment_id:
+#     - action: action_payment_status
 
 
-- story: check payment status directly
-  steps:
-    - intent: check_payment_status
-    - action: utter_let_me_check
-    - intent: get_payment_id
-      entities:
-        - payment_id:
-    - action: action_payment_status
+# - story: check payment status directly
+#   steps:
+#     - intent: check_payment_status
+#     - action: utter_let_me_check
+#     - intent: get_payment_id
+#       entities:
+#         - payment_id:
+#     - action: action_payment_status
 
 

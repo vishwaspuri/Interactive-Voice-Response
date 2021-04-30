@@ -11,3 +11,19 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Activate Payment Form
+  steps:
+  - intent: check_payment_status
+  - action: payment_id_form
+  - active_loop: payment_id_form
+
+- rule: Submit Payment Form
+  condition:
+  - active_loop: payment_id_form
+  steps:
+  - action: payment_id_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_payment_status 

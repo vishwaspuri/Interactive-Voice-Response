@@ -12,11 +12,12 @@ intents:
 - mood_unhappy
 - bot_challenge
 - check_payment_status
+- payment_id
 entities:
 - payment_id
 slots:
   payment_id:
-    type: text
+    type: any
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -33,7 +34,14 @@ responses:
   - text: I am a bot, powered by Rasa.
   utter_let_me_check:
   - text: Let me check. Please tell me the payment id?
-  utter_payment_id_check_result:
-  - text: The payment is complete
+  utter_ask_payment_id:
+  - text: What is payment id?
+  utter_payment_status:
+  - text: Your payment with id {Payment_id} is {Payment_status}.
 actions:
 - action_payment_status
+forms:
+  payment_id_form:
+    payment_id:
+      - type: from_entity
+        entity: payment_id

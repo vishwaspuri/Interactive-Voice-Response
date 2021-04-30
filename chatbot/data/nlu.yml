@@ -94,7 +94,7 @@ nlu:
     - can you pls check if payment id [81f1ff6834ce](payment_id)
     - whats the status of the payment id [b448f0840a6a](payment_id)
     - is the payment with id [7f2a98c13698](payment_id) complete
-- intent: get_payment_id
+- intent: payment_id
   examples: |
     - [7f2a98c45698](payment_id)
     - payment id is [6d026293f631](payment_id)
@@ -103,6 +103,7 @@ nlu:
     - this is the id [511a0069ea26](payment_id)
     - payment id [b213e20sd21e](payment_id)
     - [29a56b90ad92](payment_id)
+
 - synonym: payment id
   examples: |
     - id for payment
