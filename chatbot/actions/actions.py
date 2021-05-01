@@ -27,7 +27,6 @@ class ActionHelloWorld(Action):
 
         return []
 
-
 class ValidatePaymentVerificationForm(Action):
     def name(self) -> Text:
         return "payment_id_form"
@@ -64,16 +63,13 @@ class ValidateAppointmentForm(Action):
         
         return [SlotSet("requested_slot"), None]
 
-
-
-
 class ActionCreateMeeting(Action):
     def name(self)  -> Text:
         return "action_create_appointment"
     
     def run(self, dispatcher, tracker: Tracker, domain: "DomainDict") -> List[Dict[Text, Any]]:
         # user_name is the name of the person making the appointment
-        User_name = tracker.get_slot("user_name")
+        user_name = tracker.get_slot("user_name")
         # appointment_with is the name of the person with whom the appointment is being made
         appointment_with = tracker.get_slot("appointment_with")
         # appointment_time is the time of the appointment
