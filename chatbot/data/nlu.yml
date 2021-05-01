@@ -103,6 +103,43 @@ nlu:
     - this is the id [511a0069ea26](payment_id)
     - payment id [b213e20sd21e](payment_id)
     - [29a56b90ad92](payment_id)
+- intent: create_new_appointment
+  examples: |
+    - I want to create a new appointment
+    - Please make a new appointment
+    - Create a new appointment
+    - create appointment
+    - rasa create appointment
+    - i need to meet with someone
+    - talk to your service
+    - contact customer service
+    - appointment with sales representative
+- intent: my_name
+  examples: |
+    - my name is [vishwas]{"entity":"user_name","value":"vishwas"}
+    - my name is [rahul]{"entity":"user_name","value":"rahul"}
+    - my name is [apneet]{"entity":"user_name","value":"apneet"}
+    - [ashish]{"entity":"user_name","value":"ashish"} is my name
+    - [miloni]{"entity":"user_name","value":"miloni"} this side
+    - people call me [manit]{"entity":"user_name","value":"manit"}
+    - i am called [manpreet]{"entity":"user_name","value":"manpreet"}
+- intent: appointment_with
+  examples: |
+    - i want to connect with [Vishwas](appointment_with)
+    - i want to create an appointment with [dharmesh](appointment_with)
+    - please make an appointment with [john]{"entity":"appointment_with", "value":"john"}
+    - [rishabh]{"entity":"appointment_with", "value":"rishabh"} appointment with
+    - Please make an appointment with [ganguly]{"entity":"appointment_with", "value":"ganguly"}
+    - Please make an appointment with [manit]{"entity":"appointment_with", "value":"manit"}
+    - Please make an appointment with [miloni]{"entity":"appointment_with", "value":"miloni"}
+- intent: tell_appointment_time
+  examples: |
+    - make an appointment at [7pm]{"entity": "appointment_time", "value":"7pm"} 
+    - appointment time: [8:30 am]{"entity": "appointment_time", "value":"8:30am"}
+    - let the time be [6:45am]{"entity": "appointment_time", "value":"6:45am"}
+    - time for appointment will be [12:45pm]{"entity": "appointment_time", "value":"12:45am"}
+    - make our appointment at [11:22pm]{"entity": "appointment_time", "value":"11:22pm"}
+
 
 - synonym: payment id
   examples: |
