@@ -16,12 +16,12 @@ intents:
 - create_new_appointment
 - my_name
 - appointment_with
-- tell_appointment_time
+- tell_time
 entities:
 - payment_id
 - user_name
 - appointment_with
-- appointment_time
+- time
 slots:
   payment_id:
     type: any
@@ -29,7 +29,7 @@ slots:
     type: any
   appointment_with:
     type: any
-  appointment_time:
+  time:
     type: any
 responses:
   utter_greet:
@@ -55,10 +55,10 @@ responses:
   - text: Please tell me your name.
   utter_ask_appointment_with:
   - text: With whom do you want your appointment with?
-  utter_ask_appointment_time:
+  utter_ask_time:
   - text: At what time do you wish to schedule your appointment?
   utter_appointment_confirmed:
-  - text: Mr/Ms {User_name}, your appointment with {Appointment_with} is scheduled at {Appointment_time} is confirmed.
+  - text: Mr/Ms {User_name}, your appointment with {Appointment_with} is scheduled at {time} is confirmed.
 actions:
 - action_payment_status
 - action_create_appointment
@@ -74,6 +74,6 @@ forms:
     appointment_with:
       - type: from_entity
         entity: appointment_with
-    appointment_time:
+    time:
       - type: from_entity
-        entity: appointment_time
+        entity: time

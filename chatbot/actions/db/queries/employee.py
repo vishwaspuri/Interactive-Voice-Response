@@ -1,4 +1,4 @@
-from models.employee import Employee
+from ..models.employee import Employee
 
 def CreateNewEmployee(name):
     user = Employee()

@@ -1,5 +1,5 @@
 from pymongo.read_preferences import ReadPreference
-from models.employee import Employee
+from .employee import Employee
 from pymodm import MongoModel, fields
 
 class Appointment(MongoModel):

@@ -1,4 +1,4 @@
-from models.appointment import Appointment
+from ..models.appointment import Appointment
 
 def CreateNewAppointment(employee, customer_name, appointment_time):
     appointment = Appointment()

@@ -11,7 +11,11 @@ from typing import Any, Text, Dict, List
 from rasa_sdk.events import SlotSet, EventType
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from pymodm import connect
+from .db.queries.appointment import CreateNewAppointment
+from .db.queries.employee import GetEmployeeByName
 
+connect('mongodb://127.0.0.1:27017/rasa-chatbot')
 
 class ActionHelloWorld(Action):
 
@@ -21,8 +25,7 @@ class ActionHelloWorld(Action):
     def run(self,
             dispatcher: CollectingDispatcher,
             tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]: 
         dispatcher.utter_message(text="Hello World!")
 
         return []
@@ -57,8 +60,9 @@ class ValidateAppointmentForm(Action):
     def name(self) -> Text:
         return "appointment_form"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict) -> List[EventType]:
-        required_slots = ["user_name", "appointment_with", "appointment_time"]
-        if tracker.get_slot(slot_name) is None:
+        required_slots = ["user_name", "appointment_with", "time"]
+        for slot_name in required_slots:    
+            if tracker.get_slot(slot_name) is None:
                 return [SlotSet("requested_slot", slot_name)]
         
         return [SlotSet("requested_slot"), None]
@@ -70,11 +74,25 @@ class ActionCreateMeeting(Action):
     def run(self, dispatcher, tracker: Tracker, domain: "DomainDict") -> List[Dict[Text, Any]]:
         # user_name is the name of the person making the appointment
         user_name = tracker.get_slot("user_name")
+        print(user_name)
         # appointment_with is the name of the person with whom the appointment is being made
         appointment_with = tracker.get_slot("appointment_with")
+        print(appointment_with)
         # appointment_time is the time of the appointment
-        appointment_time = tracker.get_slot("appointment_time")
+        appointment_time = tracker.get_slot("time")
+        print(appointment_time)
 
-        dispatcher.utter_message(template="utter_appointment_confirmed", User_name=user_name, Appointment_with=appointment_with, Appointment_time=appointment_time)
+        employee = GetEmployeeByName(name=appointment_with)
+        if employee is None:
+            dispatcher.utter_message(text="We have no employee with the provided name.")
+            return []
 
+        try:
+            appointment = CreateNewAppointment(employee=employee, customer_name=user_name, appointment_time=appointment_time)
+            dispatcher.utter_message(template="utter_appointment_confirmed", User_name=user_name, Appointment_with=appointment_with, Appointment_time=appointment_time)
+        except:
+            dispatcher.utter_message(text="We could not create an appointment due to an unkown problem. Please try again later.")
+
+        
+        
 

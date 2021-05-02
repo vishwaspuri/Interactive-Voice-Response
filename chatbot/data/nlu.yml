@@ -132,13 +132,13 @@ nlu:
     - Please make an appointment with [ganguly]{"entity":"appointment_with", "value":"ganguly"}
     - Please make an appointment with [manit]{"entity":"appointment_with", "value":"manit"}
     - Please make an appointment with [miloni]{"entity":"appointment_with", "value":"miloni"}
-- intent: tell_appointment_time
+- intent: tell_time
   examples: |
-    - make an appointment at [7pm]{"entity": "appointment_time", "value":"7pm"} 
-    - appointment time: [8:30 am]{"entity": "appointment_time", "value":"8:30am"}
-    - let the time be [6:45am]{"entity": "appointment_time", "value":"6:45am"}
-    - time for appointment will be [12:45pm]{"entity": "appointment_time", "value":"12:45am"}
-    - make our appointment at [11:22pm]{"entity": "appointment_time", "value":"11:22pm"}
+    - make an appointment at today 7pm.
+    - appointment time: tomorrow 6 am
+    - let the time be 3rd May at 4:45 pm  
+    - time for appointment will be today 8pm
+    - make our appointment at 5th May 5pm
 
 
 - synonym: payment id
