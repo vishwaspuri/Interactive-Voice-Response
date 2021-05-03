@@ -7,5 +7,8 @@ def CreateNewEmployee(name):
     return user
 
 def GetEmployeeByName(name):
-    employee = Employee.objects.get({'name': name})
-    return employee
+    try:
+        employee = Employee.objects.get({'name': str(name)})
+        return employee
+    except:
+        return None

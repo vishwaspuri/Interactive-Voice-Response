@@ -62,6 +62,7 @@ responses:
 actions:
 - action_payment_status
 - action_create_appointment
+- validate_appointment_form
 forms:
   payment_id_form:
     payment_id:
