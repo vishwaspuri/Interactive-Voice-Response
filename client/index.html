@@ -4,31 +4,34 @@
         <title>
             Interactive Voice response
         </title>
-        <!-- <link rel="stylesheet" href="index.css"> -->
+        <link rel="stylesheet" href="./static/index.css">
 	    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
         
     </head>
     <body>
         <header>
             <div class="mega-div"> 
-                <div>
+                <div class="fixed-top">
                     <div class="img-with-text">
-                        <img class="banner-image center" height="400vh" width="500vw" align="center" alt="Robot logo" src="https://www.cloudtalk.io/static-media/content/images/cloudtalk%20interactive%20voice%20response.png"></img>
+                        <!-- https://www.cloudtalk.io/static-media/content/images/cloudtalk%20interactive%20voice%20response.png -->
+                        <img class="banner-image center" height="400vh" width="500vw" align="center" alt="Robot logo" src="./static/images/interactiveVoiceResponse.png"></img>
                         <h1><code> Interactive voice response </code></h1>
                     </div>
                     <div>
-                        <button id="record" style="background-color: #5a17ee; border: 0px;">Record Voice</button>
+                        <button id="record" style="background-color: #5a17ee; border: 0px;">Speak</button>
                         <div class="chose-language">
                             <label for="language">Choose a language:</label>
-                            <select name="language" id="language">
+                            <select name="language" id="language" style="position: absolute;left: 49vw;top: 608px;user-select: auto;">
                                 <option value="English">English</option>
                                 <option value="Spanish">Spanish</option>
                             </select>
                         </div>
                     </div>
+                    <div class="voice-on-off">
+                        <input type="image" src="./static/images/voiceOn.png" style="height:50px; position: fixed; top: 5px; right: 5px"name="saveForm" class="mute-unmute" id="mute-unmute" />
+                    </div>
                 </div>
                 <div id="output">
-
                 </div>
             </div>
         </header>
@@ -36,48 +39,5 @@
 
         </div>
     </body>
-    <script>
-        // Set up a new Speech Recognizer
-        const recognition = new webkitSpeechRecognition();
-        // Set the new language setting.
-        // More info here: https://stackoverflow.com/questions/14257598/what-are-language-codes-in-chromes-implementation-of-the-html5-speech-recogniti
-        recognition.lang = "en-US";
-        recognition.continuous = false;
-        recognition.interimResults = false;
-
-        // Start recognizing after the button is clicked.
-        document.getElementById("record").onclick = function() {
-            document.getElementById("record").style.backgroundColor = "#FF5733";
-            recognition.start();
-            console.log('Listening...');
-        }
-        recognition.onspeechend = () => {
-            document.getElementById("record").style.backgroundColor = "#5a17ee";
-        }
-        
-        // Once a result is parsed, send the parsed text to a Rasa server and update HTML
-        recognition.onresult = function(event) {
-            var transcript = event.results[0][0].transcript;
-            console.log(transcript)
-            console.log('Confidence: ' + event.results[0][0].confidence);
-            var textnode = document.createElement("h2");
-            textnode.innerHTML = `<code>You: ${transcript}</code>`;
-            document.getElementById("output").appendChild(textnode);
-            let payload = {
-                method: "POST",
-                body: JSON.stringify({text: transcript})        
-            }
-            fetch("/api/", payload)
-            .then(result => {
-                result.json()
-                .then(response => {
-                    console.log(response);
-                    let textnode = document.createElement("h2");
-                    textnode.innerHTML = `<code>Bot: ${response[0].text}</code>`;
-                    document.getElementById("output").appendChild(textnode)
-                })
-            })
-            .catch(error => console.log(error));
-        }
-    </script>
+    <script src="./static/index.js"></script>
 </html>
