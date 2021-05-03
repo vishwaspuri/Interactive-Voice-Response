@@ -60,14 +60,14 @@ class ValidateAppointmentForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_appointment_form"
     
+    def validate_user_name(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: "DomainDict") -> Dict[Text, Any]:
+        return {"user_name": slot_value}
     def validate_appointment_with(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: "DomainDict") -> Dict[Text, Any]:
         if GetEmployeeByName(slot_value) is None:
             dispatcher.utter_message(text="There is no one who goes by the name  "+slot_value+" here.")
             return {"appointment_with": None}
         else:
             return {"appointment_with": slot_value}
-    def validate_user_name(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: "DomainDict") -> Dict[Text, Any]:
-        return {"user_name": slot_value}
     def validate_time(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: "DomainDict") -> Dict[Text, Any]:
         return {"time": slot_value}
         

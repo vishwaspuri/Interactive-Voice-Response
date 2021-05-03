@@ -123,15 +123,22 @@ nlu:
     - [miloni]{"entity":"user_name","value":"miloni"} this side
     - people call me [manit]{"entity":"user_name","value":"manit"}
     - i am called [manpreet]{"entity":"user_name","value":"manpreet"}
+    - i am [manit]{"entity":"user_name", "value":"manit"}
+    - i am [miloni]{"entity":"user_name", "value":"miloni"}
+    - [rishabh]{"entity":"user_name", "value":"rishabh"}
+    - [vishwas]{"entity":"user_name"}
+    - [sanchit]{"entity":"user_name"}
+    - my name is [sidharth]{"entity":"user_name"}
+    - my name is [sanchit]{"entity":"user_name", "value": "sanchit"}
+
 - intent: appointment_with
   examples: |
-    - i want to connect with [Vishwas](appointment_with)
+    - i want to connect with [dharmesh](appointment_with)
+    - i want to connect with [john](appointment_with)
     - i want to create an appointment with [dharmesh](appointment_with)
+    - i want to create an appointment with [john](appointment_with)
     - please make an appointment with [john]{"entity":"appointment_with", "value":"john"}
-    - [rishabh]{"entity":"appointment_with", "value":"rishabh"} appointment with
-    - Please make an appointment with [ganguly]{"entity":"appointment_with", "value":"ganguly"}
-    - Please make an appointment with [manit]{"entity":"appointment_with", "value":"manit"}
-    - Please make an appointment with [miloni]{"entity":"appointment_with", "value":"miloni"}
+    - Please make an appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
 - intent: tell_time
   examples: |
     - make an appointment at today 7pm.
