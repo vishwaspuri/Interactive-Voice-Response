@@ -6,6 +6,7 @@ from fastapi.responses import HTMLResponse
 import requests as rq
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from google_trans_new import google_translator  
 
 app = FastAPI()
 
@@ -28,6 +29,10 @@ app.mount("/static", StaticFiles(directory="../client/static", html=True), name=
 class Text(BaseModel):
     text: str
 
+class Translate(BaseModel):
+    lang: str
+    text: str
+
 
 # This endpoint returns our HTML page.
 @app.get("/", response_class=HTMLResponse)
@@ -36,6 +41,22 @@ def index():
 
 
 # This endpoint will receive texts, proxy to Rasa and return parsed results.
+@app.post("/translate-to-english/")
+async def translate_to_english(text: Text):
+    translator = google_translator()
+    payload = {
+        "translated_text": translator.translate(text.text, lang_tgt='en')
+    }
+    return payload
+
+@app.post("/translate-from-english/")
+async def translate_from_english(body: Translate):
+    translator = google_translator()
+    payload = {
+        "translated_text": translator.translate(body.text, lang_tgt=body.lang)
+    }
+    return payload
+
 @app.post("/api/")
 def post_attempt(text: Text):
     body = {
