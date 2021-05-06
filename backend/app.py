@@ -1,7 +1,7 @@
 import pathlib
 import uuid
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 import requests as rq
 from fastapi.middleware.cors import CORSMiddleware
@@ -50,10 +50,14 @@ async def translate_to_english(text: Text):
     return payload
 
 @app.post("/translate-from-english/")
-async def translate_from_english(body: Translate):
+async def translate_from_english(req: Translate):
+    # print(request.body.format)
+    # print("hello")
     translator = google_translator()
+
+    print(translator.translate(req.text, lang_tgt=req.lang))
     payload = {
-        "translated_text": translator.translate(body.text, lang_tgt=body.lang)
+        "translated_text": translator.translate(req.text, lang_tgt=req.lang)
     }
     return payload
 
