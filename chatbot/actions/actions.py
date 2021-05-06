@@ -14,8 +14,16 @@ from rasa_sdk.executor import CollectingDispatcher
 from pymodm import connect
 from .db.queries.appointment import CreateNewAppointment
 from .db.queries.employee import GetEmployeeByName
+from dotenv import load_dotenv
+# from dotenv import actions
+from dotenv import dotenv_values
+import os
 
-connect('mongodb://127.0.0.1:27017/rasa-chatbot')
+load_dotenv()
+
+
+# connect('mongodb://127.0.0.1:27017/rasa-chatbot')
+connect(os.getenv('MONGO_ADDR'))
 
 class ActionHelloWorld(Action):
 

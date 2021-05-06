@@ -10,7 +10,6 @@ recognition.interimResults = false;
 document.getElementById("record").onclick = function() {
     document.getElementById("record").style.backgroundColor = "#FF5733";
     recognition.start();
-    // console.log('Listening...');
 }
 recognition.onspeechend = () => {
     document.getElementById("record").style.backgroundColor = "#5a17ee";
@@ -24,6 +23,20 @@ recognition.onresult = function(event) {
     var textnode = document.createElement("h2");
     textnode.innerHTML = `<code>You: ${transcript}</code>`;
     document.getElementById("output").appendChild(textnode);
+    
+    // Translating languages here
+    console.log(transcript);
+    console.log(document.getElementById("language").value);
+    if(document.getElementById("language").value=="French"){
+        // Convert transcript from French to English
+    }
+    else if(document.getElementById("language").value=="Spanish"){
+        // Convert transcript from Spanish to English
+    }
+    else if(document.getElementById("language").value=="German"){
+        // Convert transcript from German to English
+    }
+    
     let payload = {
         method: "POST",
         body: JSON.stringify({text: transcript})        
@@ -32,11 +45,23 @@ recognition.onresult = function(event) {
     .then(result => {
         result.json()
         .then(response => {
-            // console.log(response);
+            console.log(response[0].text);
+
+            // Convert back to english here
+            if(document.getElementById("language").value=="French"){
+                // Convert transcript from English to French
+            }
+            else if(document.getElementById("language").value=="Spanish"){
+                // Convert transcript from English to Spanish
+            }
+            else if(document.getElementById("language").value=="German"){
+                // Convert transcript from English to German
+            }
+
             let textnode = document.createElement("h2");
             textnode.innerHTML = `<code>Bot: ${response[0].text}</code>`;
             document.getElementById("output").appendChild(textnode);
-            console.log(speechSynthesis.volume);
+            // console.log(speechSynthesis.volume);
             speechSynthesis.speak(new SpeechSynthesisUtterance(response[0].text));
         })
     })

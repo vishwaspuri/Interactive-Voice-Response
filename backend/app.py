@@ -23,7 +23,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.mount("/static", StaticFiles(directory="../client/static"), name="static")
+app.mount("/static", StaticFiles(directory="../client/static", html=True), name="static")
 
 class Text(BaseModel):
     text: str
