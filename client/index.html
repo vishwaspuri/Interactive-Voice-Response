@@ -1,43 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Interactive Voice response
-        </title>
-        <link rel="stylesheet" href="./static/index.css">
-	    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
-        
-    </head>
-    <body>
-        <header>
-            <div class="mega-div"> 
-                <div class="fixed-top">
-                    <div class="img-with-text">
-                        <!-- https://www.cloudtalk.io/static-media/content/images/cloudtalk%20interactive%20voice%20response.png -->
-                        <img class="banner-image center" height="400vh" width="500vw" align="center" alt="Robot logo" src="./static/images/interactiveVoiceResponse.png"></img>
-                        <h1><code> Interactive voice response </code></h1>
-                    </div>
-                    <div>
-                        <button id="record" style="background-color: #5a17ee; border: 0px;">Speak</button>
-                        <div class="chose-language">
-                            <label for="language">Choose a language:</label>
-                            <select name="language" id="language" style="position: absolute;left: 49vw;top: 608px;user-select: auto;">
-                                <option value="English">English</option>
-                                <option value="Spanish">Spanish</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="voice-on-off">
-                        <input type="image" src="./static/images/voiceOn.png" style="height:50px; position: fixed; top: 5px; right: 5px"name="saveForm" class="mute-unmute" id="mute-unmute" />
+
+<head>
+    <title>
+        Interactive Voice response
+    </title>
+    <link rel="stylesheet" href="./static/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="mega-div">
+            <div class="fixed-top">
+                <div class="img-with-text">
+                    <!-- https://www.cloudtalk.io/static-media/content/images/cloudtalk%20interactive%20voice%20response.png -->
+                    <img class="banner-image center" height="400vh" width="500vw" align="center" alt="Robot logo"
+                        src="./static/images/interactiveVoiceResponse.png"></img>
+                    <h1><code> Interactive voice response </code></h1>
+                </div>
+                <div>
+                    <button id="record" style="background-color: #5a17ee; border: 0px;">Speak</button>
+                    <div class="chose-language">
+                        <label for="language">Choose a language:</label>
+                        <select name="language" style="position: absolute;left: 49vw;top: 608px;user-select: auto;"
+                            onchange='changeLang(this);'>
+                            <option value="es">English</option>
+                            <option value="fr">French</option>
+                            <option value="es">Spanish</option>
+                            <option value="de">German</option>
+                        </select>
                     </div>
                 </div>
-                <div id="output">
+                <div class="voice-on-off">
+                    <input type="image" src="./static/images/voiceOn.png"
+                        style="height:50px; position: fixed; top: 5px; right: 5px" name="saveForm" class="mute-unmute"
+                        id="mute-unmute" onclick="reverseVolumeSettings(this);" />
+                    <script>
+                        // voiceOn="https://www.freeiconspng.com/thumbs/sound-png/sound-png-3.png";
+                        // voiceOff="https://www.freeiconspng.com/thumbs/sound-off-icon/mute-off-sound-off-icon-1.png"
+                        function reverseVolumeSettings(sal) {
+                            voiceOn = "./static/images/voiceOn.png";
+                            voiceOff = "./static/images/voiceOff.png";
+                            var button = document.getElementById('mute-unmute');
+                            if (button.src.match(voiceOn)) {
+                                SpeechSynthesisUtterance.volume = 0;
+                                button.setAttribute("src", voiceOff);
+                            } else {
+                                SpeechSynthesisUtterance.volume = 1;
+                                button.setAttribute("src", voiceOn);
+                            }
+                        }
+                    </script>
                 </div>
             </div>
-        </header>
-        <div>
-
+            <div id="output">
+            </div>
         </div>
-    </body>
-    <script src="./static/index.js"></script>
+    </header>
+    <div>
+
+    </div>
+</body>
+<script src="./static/index.js"></script>
+
 </html>

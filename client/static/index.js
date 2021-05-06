@@ -10,7 +10,6 @@ recognition.interimResults = false;
 document.getElementById("record").onclick = function() {
     document.getElementById("record").style.backgroundColor = "#FF5733";
     recognition.start();
-    // console.log('Listening...');
 }
 recognition.onspeechend = () => {
     document.getElementById("record").style.backgroundColor = "#5a17ee";
@@ -19,11 +18,35 @@ recognition.onspeechend = () => {
 // Once a result is parsed, send the parsed text to a Rasa server and update HTML
 recognition.onresult = function(event) {
     var transcript = event.results[0][0].transcript;
+    var lang = recognition.lang;
     // console.log(transcript)
     // console.log('Confidence: ' + event.results[0][0].confidence);
     var textnode = document.createElement("h2");
     textnode.innerHTML = `<code>You: ${transcript}</code>`;
     document.getElementById("output").appendChild(textnode);
+    
+    // Translating languages here
+    // console.log(transcript);
+    // console.log(document.getElementById("language").value);
+    if(lang!='en-US'){
+        let translationPayload = {
+            method: "POST",
+            body:   JSON.stringify({
+                text: transcript
+            })
+        };
+        fetch('/translate-to-english/', translationPayload)
+        .then(result =>{
+            result.json()
+            .then(response => {
+                transcript= response.translated_text;
+            })
+        }) 
+        .catch(error => {
+            console.log(error);
+        })
+    }
+    
     let payload = {
         method: "POST",
         body: JSON.stringify({text: transcript})        
@@ -32,27 +55,50 @@ recognition.onresult = function(event) {
     .then(result => {
         result.json()
         .then(response => {
-            // console.log(response);
+            console.log(response[0].text);
             let textnode = document.createElement("h2");
-            textnode.innerHTML = `<code>Bot: ${response[0].text}</code>`;
-            document.getElementById("output").appendChild(textnode);
-            console.log(speechSynthesis.volume);
-            speechSynthesis.speak(new SpeechSynthesisUtterance(response[0].text));
+            var final_response = response[0].text;
+
+            if(recognition.lang!='en-US'){
+                queryBody =     JSON.stringify({
+                    lang: lang,
+                    text: response[0].text,
+                }); 
+                console.log(queryBody);
+                let translationPayload = {
+                    method: "POST",
+                    body:  queryBody,
+                    headers: {'content-type': 'application/json'}
+                };
+                fetch('/translate-from-english/', translationPayload)
+                .then(result =>{
+                    result.json()
+                    .then(res => {
+                        final_response = res.translated_text;
+                        textnode.innerHTML = `<code>Bot: ${final_response}</code>`;
+                        document.getElementById("output").appendChild(textnode);
+                        var utterance = new SpeechSynthesisUtterance(final_response);
+                        utterance.lang = lang;
+                        speechSynthesis.speak(utterance);
+                    })
+                }) 
+                .catch(error => {
+                    console.log(error);
+                })
+            }
+            else {
+                textnode.innerHTML = `<code>Bot: ${final_response}</code>`;
+                document.getElementById("output").appendChild(textnode);
+                speechSynthesis.speak(new SpeechSynthesisUtterance(response[0].text));
+            }
         })
     })
     .catch(error => console.log(error));
 }
-// voiceOn="https://www.freeiconspng.com/thumbs/sound-png/sound-png-3.png";
-// voiceOff="https://www.freeiconspng.com/thumbs/sound-off-icon/mute-off-sound-off-icon-1.png"
-voiceOn = "./static/images/voiceOn.png";
-voiceOff = "./static/images/voiceOff.png";
-document.getElementById("mute-unmute").onclick = () => {
-    var button = document.getElementById('mute-unmute');
-    if(button.src.match(voiceOn)){
-        SpeechSynthesisUtterance.volume = 0;
-        button.setAttribute("src", voiceOff);
-    } else {
-        SpeechSynthesisUtterance.volume = 1;
-        button.setAttribute("src", voiceOn);
-    }
+
+
+// changeLang(): Fuction triggered when user changes default language
+function changeLang(sel)    {
+    console.log(sel.value);
+    recognition.lang = sel.value;
 }

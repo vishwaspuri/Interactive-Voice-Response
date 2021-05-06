@@ -1,11 +1,12 @@
 import pathlib
 import uuid
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 import requests as rq
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from google_trans_new import google_translator  
 
 app = FastAPI()
 
@@ -23,9 +24,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.mount("/static", StaticFiles(directory="../client/static"), name="static")
+app.mount("/static", StaticFiles(directory="../client/static", html=True), name="static")
 
 class Text(BaseModel):
+    text: str
+
+class Translate(BaseModel):
+    lang: str
     text: str
 
 
@@ -36,6 +41,26 @@ def index():
 
 
 # This endpoint will receive texts, proxy to Rasa and return parsed results.
+@app.post("/translate-to-english/")
+async def translate_to_english(text: Text):
+    translator = google_translator()
+    payload = {
+        "translated_text": translator.translate(text.text, lang_tgt='en')
+    }
+    return payload
+
+@app.post("/translate-from-english/")
+async def translate_from_english(req: Translate):
+    # print(request.body.format)
+    # print("hello")
+    translator = google_translator()
+
+    print(translator.translate(req.text, lang_tgt=req.lang))
+    payload = {
+        "translated_text": translator.translate(req.text, lang_tgt=req.lang)
+    }
+    return payload
+
 @app.post("/api/")
 def post_attempt(text: Text):
     body = {
