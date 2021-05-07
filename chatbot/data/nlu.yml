@@ -86,6 +86,7 @@ nlu:
 - intent: check_payment_status
   examples: |
     - i want to check if a payment is complete
+    - Check whether my payment is complete
     - please check a payment status
     - is my payment done
     - has the payment been made
@@ -110,10 +111,22 @@ nlu:
     - Create a new appointment
     - create appointment
     - rasa create appointment
-    - i need to meet with someone
+    - I need to meet with someone
     - talk to your service
     - contact customer service
     - appointment with sales representative
+    - make appointment
+    - create appointment
+    - make an appointment
+    - create an appointment
+    - create a appointment
+    - make a appointment
+    - book an appointment
+    - book a appointment
+    - new appointment please
+    - appointment
+    - new appointment
+    - I need a new appointment
 - intent: my_name
   examples: |
     - my name is [vishwas]{"entity":"user_name","value":"vishwas"}
@@ -128,8 +141,8 @@ nlu:
     - [rishabh]{"entity":"user_name", "value":"rishabh"}
     - [vishwas]{"entity":"user_name"}
     - [sanchit]{"entity":"user_name"}
-    - my name is [sidharth]{"entity":"user_name"}
-    - my name is [sanchit]{"entity":"user_name", "value": "sanchit"}
+    - My name is [sidharth]{"entity":"user_name"}
+    - My name is [sanchit]{"entity":"user_name", "value": "sanchit"}
 
 - intent: appointment_with
   examples: |
@@ -139,6 +152,10 @@ nlu:
     - i want to create an appointment with [john](appointment_with)
     - please make an appointment with [john]{"entity":"appointment_with", "value":"john"}
     - Please make an appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
+    - I need a new appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
+    - I need an appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
+    - I want a new appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
+    - Please create an appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
 - intent: tell_time
   examples: |
     - make an appointment at today 7pm.
@@ -152,3 +169,44 @@ nlu:
   examples: |
     - id for payment
     - payment id
+    - id
+
+- synonym: appointment
+  examples: |
+    - meet
+    - meeting
+    - appointments
+
+- synonym: make
+  examples: |
+    - create
+    - book
+
+- synonym: need
+  examples: |
+    - want
+
+- synonym: want
+  examples: |
+    - need
+
+- synonym: create
+  examples: |
+    - make
+    - book
+
+- synonym: book
+  examples: |
+    - create
+    - make
+
+- synonym: an
+  examples: |
+    - a
+
+- synonym: a
+  examples: |
+    - an
+- synonym: I
+  examples: |
+  -
