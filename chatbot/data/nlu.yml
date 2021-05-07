@@ -158,12 +158,61 @@ nlu:
     - Please create an appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
 - intent: tell_time
   examples: |
-    - make an appointment at today 7pm.
+    - make an appointment at today 7pm
+    - make an appointment at 7pm today
     - appointment time: tomorrow 6 am
-    - let the time be 3rd May at 4:45 pm  
+    - tomorrow 6 pm
+    - at 6 pm tomorrow
+    - on 5th May at 5pm
+    - on May 5th at 5pm
+    - 5th May at 5pm
+    - 5 pm 5th May
+    - 5 pm May 5th
+    - let the time be 3rd May at 4:45 pm
     - time for appointment will be today 8pm
     - make our appointment at 5th May 5pm
 
+- intent: cancel_meeting
+  examples: |
+    - cancel the meeting at today 7pm
+    - cancel the meeting at 7pm today
+    - cancel my meeting with [john](appointed_with)
+    - cancel my meeting tomorrow
+# Have to add rest of its functionality
+
+- intent: update_meeting
+  examples: |
+    - update the meeting from today 7pm tomorrow 8pm
+    - update the meeting at today 7pm to tomorrow 8pm
+    - update the meeting at 7pm today
+    - update my meeting from today 7pm tomorrow 8pm
+    - update my meeting at today 7pm to tomorrow 8pm
+    - update my meeting at 7pm today
+    - update my meeting today
+    - update my meeting
+    - please update my meeting
+    - update my meeting
+    - can you update my meeting
+    - can you update my meeting?
+    - update my meeting with [john](appointed_with)
+    - I want to update my meeting
+
+# Have to add rest of its functionality
+
+- synonym: update
+  examples: |
+    - change
+    - shift
+    - postpone
+    - prepone
+
+- synonym: please
+  examples: |
+    - kindly
+
+- synonym: can
+  examples: |
+    - will
 
 - synonym: payment id
   examples: |
@@ -175,6 +224,14 @@ nlu:
   examples: |
     - meet
     - meeting
+    - appointments
+    - call
+
+- synonym: meeting
+  examples: |
+    - meet
+    - appointment
+    - call
     - appointments
 
 - synonym: make
