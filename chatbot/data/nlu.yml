@@ -264,6 +264,3 @@ nlu:
 - synonym: a
   examples: |
     - an
-- synonym: I
-  examples: |
-  -
