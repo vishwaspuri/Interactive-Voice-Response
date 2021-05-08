@@ -10,21 +10,29 @@
 
 </head>
 
-<body>
+<body style="background-color:mediumturquoise; color: white;">
     <header>
         <div class="mega-div">
             <div class="fixed-top">
                 <div class="img-with-text">
                     <!-- https://www.cloudtalk.io/static-media/content/images/cloudtalk%20interactive%20voice%20response.png -->
-                    <img class="banner-image center" height="400vh" width="500vw" align="center" alt="Robot logo"
+                    <img class="banner-image center" height="360vh" width="450vw" alt="Robot logo"
                         src="./static/images/interactiveVoiceResponse.png"></img>
-                    <h1><code> Interactive voice response </code></h1>
+                        <p class="center" style="font-size: 40px;"><code>UnScript</code></p>
+                    <h1><code> Interactive Voice Response </code></h1>
                 </div>
                 <div>
                     <button id="record" style="background-color: #5a17ee; border: 0px;">Speak</button>
                     <div class="chose-language">
-                        <label for="language">Choose a language:</label>
-                        <select name="language" style="position: absolute;left: 49vw;top: 608px;user-select: auto;"
+                        <label for="language" style="font-size: 18px;"><code>Choose a language:</code></label>
+                        <select name="language" style="position: absolute;left: 52vw;top: 642px;user-select: auto; background-color: #058daf;
+                        color: white;
+                        border: none;
+                        /* font-size: 20px; */
+                        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+                        -webkit-appearance: button;
+                        appearance: button;
+                        outline: none;"
                             onchange='changeLang(this);'>
                             <option value="es">English</option>
                             <option value="fr">French</option>
@@ -60,7 +68,7 @@
         </div>
     </header>
     <div>
-
+        
     </div>
 </body>
 <script src="./static/index.js"></script>
