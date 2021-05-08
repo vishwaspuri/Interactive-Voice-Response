@@ -2,19 +2,19 @@ version: "2.0"
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - Hey
+    - Hello
+    - Hi
+    - Hello there
+    - Good morning
+    - Good evening
+    - Moin
+    - Hey there
+    - Let's go
+    - Hey dude
+    - Goodmorning
+    - Goodevening
+    - Good afternoon
 - intent: goodbye
   examples: |
     - good afternoon
@@ -85,7 +85,7 @@ nlu:
     - am I talking to a human?
 - intent: check_payment_status
   examples: |
-    - i want to check if a payment is complete
+    - I want to check if a payment is complete
     - Check whether my payment is complete
     - please check a payment status
     - is my payment done
@@ -135,9 +135,9 @@ nlu:
     - [ashish]{"entity":"user_name","value":"ashish"} is my name
     - [miloni]{"entity":"user_name","value":"miloni"} this side
     - people call me [manit]{"entity":"user_name","value":"manit"}
-    - i am called [manpreet]{"entity":"user_name","value":"manpreet"}
-    - i am [manit]{"entity":"user_name", "value":"manit"}
-    - i am [miloni]{"entity":"user_name", "value":"miloni"}
+    - I am called [manpreet]{"entity":"user_name","value":"manpreet"}
+    - I am [manit]{"entity":"user_name", "value":"manit"}
+    - I am [miloni]{"entity":"user_name", "value":"miloni"}
     - [rishabh]{"entity":"user_name", "value":"rishabh"}
     - [vishwas]{"entity":"user_name"}
     - [sanchit]{"entity":"user_name"}
@@ -146,10 +146,10 @@ nlu:
 
 - intent: appointment_with
   examples: |
-    - i want to connect with [dharmesh](appointment_with)
-    - i want to connect with [john](appointment_with)
-    - i want to create an appointment with [dharmesh](appointment_with)
-    - i want to create an appointment with [john](appointment_with)
+    - I want to connect with [dharmesh](appointment_with)
+    - I want to connect with [john](appointment_with)
+    - I want to create an appointment with [dharmesh](appointment_with)
+    - I want to create an appointment with [john](appointment_with)
     - please make an appointment with [john]{"entity":"appointment_with", "value":"john"}
     - Please make an appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
     - I need a new appointment with [dharmesh]{"entity":"appointment_with", "value":"dharmesh"}
@@ -174,30 +174,77 @@ nlu:
 
 - intent: cancel_meeting
   examples: |
-    - cancel the meeting at today 7pm
-    - cancel the meeting at 7pm today
-    - cancel my meeting with [john](appointed_with)
-    - cancel my meeting tomorrow
+    - Cancel the meeting at today 7pm
+    - Cancel meeting with [john](appointed_with)
+    - Cancel meeting at 7pm today
+    - I won't be able to join meeting at 7pm
+    - I want to cancel my meeting with [John](appointed_with)
+    - I want to cancel my meeting at 7pm
+    - I want to cancel my meeting today
+    - I want to cancel my meeting at 7pm today
+    - I want to cancel my meeting scheduled today at 7pm
+    - Please cancel my meeting with [John](appointed_with)
+    - Cancel the meeting at 7pm today
+    - Cancel my meeting with [john](appointed_with)
+    - Cancel my meeting tomorrow
+    - Cancel my meeting scheduled today
+    - Cancel my meeting scheduled today at 7pm
+    - Cancel my meeting scheduled today with [John](appointed_with)
+    - Cancel meeting
+    - Cancel the meeting
+    - Cancel my meeting
+    - Please cancel meeting today
+    - Please cancel meeting with [John](appointed_with)
 # Have to add rest of its functionality
 
 - intent: update_meeting
   examples: |
-    - update the meeting from today 7pm tomorrow 8pm
-    - update the meeting at today 7pm to tomorrow 8pm
-    - update the meeting at 7pm today
-    - update my meeting from today 7pm tomorrow 8pm
-    - update my meeting at today 7pm to tomorrow 8pm
-    - update my meeting at 7pm today
-    - update my meeting today
-    - update my meeting
+    - Update the meeting from today 7pm tomorrow 8pm
+    - Update the meeting at today 7pm to tomorrow 8pm
+    - Update the meeting at 7pm today
+    - Update my meeting from today 7pm tomorrow 8pm
+    - Update my meeting at today 7pm to tomorrow 8pm
+    - Update my meeting at 7pm today
+    - Update my meeting today
+    - Update my meeting
     - please update my meeting
-    - update my meeting
+    - Update my meeting
     - can you update my meeting
     - can you update my meeting?
-    - update my meeting with [john](appointed_with)
+    - Update my meeting with [john](appointed_with)
     - I want to update my meeting
 
 # Have to add rest of its functionality
+
+- intent: show_meeting_details
+  examples: |
+    - When is my meeting
+    - When is my meeting with [John](appointed_with)
+    - When is meeting with [John](appointed_with)
+    - Please tell me when is my meeting scheduled
+    - Please tell me when is meeting scheduled
+    - Please tell me when is my meeting with [John](appointed_with)
+    - Please tell me when is my meeting at
+    - Please tell me when is my meeting
+    - Please tell me when is meeting
+    - Please tell me when is the meeting
+    - What time is my meeting at
+    - What time is the meeting at
+    - What time is meeting at
+    - What time is my meeting
+    - What time is meeting
+    - What time is meeting with [John](appointed_with)
+    - What time is my meeting with [John](appointed_with)
+    - Please tell me when is my meeting scheduled at
+    - Please tell me at what time is my meeting scheduled at
+    - What time is my meeting scheduled at
+    - Give me details about meeting
+    - Give me details about meeting with [John](appointed_with)
+    - Tell me details about meeting
+    - Tell me details about my meeting
+    - At what time is my meeting
+    - At what time is meeting
+    - At what time do I have to meet [John](appointed_with)
 
 - synonym: update
   examples: |
@@ -206,9 +253,18 @@ nlu:
     - postpone
     - prepone
 
+- synonym: Update
+  examples: |
+    - Change
+    - Shift
+    - Postpone
+    - prepone
+
 - synonym: please
   examples: |
     - kindly
+    - Please
+    - Kindly
 
 - synonym: can
   examples: |
@@ -224,12 +280,14 @@ nlu:
   examples: |
     - meet
     - meeting
+    - meetings
     - appointments
     - call
 
 - synonym: meeting
   examples: |
     - meet
+    - meetings
     - appointment
     - call
     - appointments
@@ -264,3 +322,37 @@ nlu:
 - synonym: a
   examples: |
     - an
+
+- synonym: Cancel
+  examples: |
+    - remove
+    - cancel
+    - Delete
+    - delete
+    - Delete
+    - Remove
+
+
+- synonym: is
+  examples: |
+    - are
+
+- synonym: are
+  examples: |
+    - is
+
+- synonym: my
+  examples: |
+    - the
+
+- synonym: the
+  examples: |
+    - my
+
+- synonym: details
+  examples: |
+    - about
+
+- synonym: about
+  examples: |
+    - details
