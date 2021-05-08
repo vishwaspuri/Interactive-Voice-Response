@@ -1,7 +1,58 @@
-.center {
+.center-image{
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-  }
+}
+/* .center-text{
+  font-size: 40px;
+  position:fixed;
+  top: 50vh;
+}
+.center-heading{
+  font-size: 40px;
+  position:fixed;
+  top: 40vh;
+} */
+
+.textbox{
+    position: fixed;
+    bottom: 0;
+    left: 34vw;
+    width: 30vw;
+    height: 12vh;
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+
+    /* background-color:mediumturquoise; */
+}
+
+.textbox-submit{
+    position: absolute;
+    left: 20vw;
+    bottom: 2.5vh;
+}
  
+.content{
+  bottom: 12vh;
+}
+
+.output{
+  position: fixed;
+  bottom: 10vh;
+  right: 10vw;
+  overflow: auto;
+  overflow-anchor: none;
+  /* scroll-behavior: auto; */
+  height: 52vh;
+  width: 35vh;
+}
+
+.chat-border {
+  position: fixed;
+  bottom: 2.5vh;
+  height: 65vh;
+  width: 30vw;
+  right: 4.49vw;
+}

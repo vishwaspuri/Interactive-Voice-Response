@@ -102,3 +102,87 @@ function changeLang(sel)    {
     console.log(sel.value);
     recognition.lang = sel.value;
 }
+
+function sendTypedMessage(data) {
+    console.log(data);
+    let textbox = document.getElementById("textbox-text");
+    var transcript = textbox.value;
+    var lang = recognition.lang;
+    // console.log(transcript)
+    // console.log('Confidence: ' + event.results[0][0].confidence);
+    var textnode = document.createElement("h2");
+    textnode.innerHTML = `<code>You: ${transcript}</code>`;
+    document.getElementById("output").appendChild(textnode);
+    
+    // Translating languages here
+    // console.log(transcript);
+    // console.log(document.getElementById("language").value);
+    if(lang!='en-US'){
+        let translationPayload = {
+            method: "POST",
+            body:   JSON.stringify({
+                text: transcript
+            })
+        };
+        fetch('/translate-to-english/', translationPayload)
+        .then(result =>{
+            result.json()
+            .then(response => {
+                transcript= response.translated_text;
+            })
+        }) 
+        .catch(error => {
+            console.log(error);
+        })
+    }
+    
+    let payload = {
+        method: "POST",
+        body: JSON.stringify({text: transcript})        
+    }
+    fetch("/api/", payload)
+    .then(result => {
+        result.json()
+        .then(response => {
+            console.log(response[0].text);
+            let textnode = document.createElement("h2");
+            var final_response = response[0].text;
+
+            if(recognition.lang!='en-US'){
+                queryBody =     JSON.stringify({
+                    lang: lang,
+                    text: response[0].text,
+                }); 
+                console.log(queryBody);
+                let translationPayload = {
+                    method: "POST",
+                    body:  queryBody,
+                    headers: {'content-type': 'application/json'}
+                };
+                fetch('/translate-from-english/', translationPayload)
+                .then(result =>{
+                    result.json()
+                    .then(res => {
+                        final_response = res.translated_text;
+                        textnode.innerHTML = `<code>Bot: ${final_response}</code>`;
+                        document.getElementById("output").appendChild(textnode);
+                        var utterance = new SpeechSynthesisUtterance(final_response);
+                        utterance.lang = lang;
+                        speechSynthesis.speak(utterance);
+                    })
+                }) 
+                .catch(error => {
+                    console.log(error);
+                })
+            }
+            else {
+                textnode.innerHTML = `<code>Bot: ${final_response}</code>`;
+                document.getElementById("output").appendChild(textnode);
+                speechSynthesis.speak(new SpeechSynthesisUtterance(response[0].text));
+            }
+        })
+    })
+    .catch(error => console.log(error));
+    textbox.value = ""
+
+}
