@@ -175,26 +175,26 @@ nlu:
 - intent: cancel_meeting
   examples: |
     - Cancel the meeting at today 7pm
-    - Cancel meeting with [john](appointed_with)
+    - Cancel meeting with [jack](appointed_with)
     - Cancel meeting at 7pm today
     - I won't be able to join meeting at 7pm
-    - I want to cancel my meeting with [John](appointed_with)
+    - I want to cancel my meeting with [jack](appointed_with)
     - I want to cancel my meeting at 7pm
     - I want to cancel my meeting today
     - I want to cancel my meeting at 7pm today
     - I want to cancel my meeting scheduled today at 7pm
-    - Please cancel my meeting with [John](appointed_with)
+    - Please cancel my meeting with [jack](appointed_with)
     - Cancel the meeting at 7pm today
-    - Cancel my meeting with [john](appointed_with)
+    - Cancel my meeting with [jack](appointed_with)
     - Cancel my meeting tomorrow
     - Cancel my meeting scheduled today
     - Cancel my meeting scheduled today at 7pm
-    - Cancel my meeting scheduled today with [John](appointed_with)
+    - Cancel my meeting scheduled today with [jack](appointed_with)
     - Cancel meeting
     - Cancel the meeting
     - Cancel my meeting
     - Please cancel meeting today
-    - Please cancel meeting with [John](appointed_with)
+    - Please cancel meeting with [jack](appointed_with)
 # Have to add rest of its functionality
 
 - intent: update_meeting
@@ -211,7 +211,7 @@ nlu:
     - Update my meeting
     - can you update my meeting
     - can you update my meeting?
-    - Update my meeting with [john](appointed_with)
+    - Update my meeting with [jack](appointed_with)
     - I want to update my meeting
 
 # Have to add rest of its functionality
@@ -219,11 +219,11 @@ nlu:
 - intent: show_meeting_details
   examples: |
     - When is my meeting
-    - When is my meeting with [John](appointed_with)
-    - When is meeting with [John](appointed_with)
+    - When is my meeting with [jack](appointed_with)
+    - When is meeting with [jack](appointed_with)
     - Please tell me when is my meeting scheduled
     - Please tell me when is meeting scheduled
-    - Please tell me when is my meeting with [John](appointed_with)
+    - Please tell me when is my meeting with [jack](appointed_with)
     - Please tell me when is my meeting at
     - Please tell me when is my meeting
     - Please tell me when is meeting
@@ -233,18 +233,18 @@ nlu:
     - What time is meeting at
     - What time is my meeting
     - What time is meeting
-    - What time is meeting with [John](appointed_with)
-    - What time is my meeting with [John](appointed_with)
+    - What time is meeting with [jack](appointed_with)
+    - What time is my meeting with [jack](appointed_with)
     - Please tell me when is my meeting scheduled at
     - Please tell me at what time is my meeting scheduled at
     - What time is my meeting scheduled at
     - Give me details about meeting
-    - Give me details about meeting with [John](appointed_with)
+    - Give me details about meeting with [jack](appointed_with)
     - Tell me details about meeting
     - Tell me details about my meeting
     - At what time is my meeting
     - At what time is meeting
-    - At what time do I have to meet [John](appointed_with)
+    - At what time do I have to meet [jack](appointed_with)
 
 - synonym: update
   examples: |
