@@ -7,7 +7,6 @@ import requests as rq
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from google_trans_new import google_translator  
-
 app = FastAPI()
 
 # We want to be flexible in our localhost demo so we'll set
@@ -51,8 +50,6 @@ async def translate_to_english(text: Text):
 
 @app.post("/translate-from-english/")
 async def translate_from_english(req: Translate):
-    # print(request.body.format)
-    # print("hello")
     translator = google_translator()
 
     print(translator.translate(req.text, lang_tgt=req.lang))

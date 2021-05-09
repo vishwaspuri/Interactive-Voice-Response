@@ -43,3 +43,19 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: action_create_appointment
+
+- rule: Activate Appointment Cancellation Form
+  steps:
+  - intent: cancel_meeting
+  - action: cancel_appointment_form
+  - active_loop: cancel_appointment_form
+
+- rule: Submit Appointment Cancellation Form
+  condition:
+  - active_loop: cancel_appointment_form
+  steps:
+  - action: cancel_appointment_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_cancel_appointment

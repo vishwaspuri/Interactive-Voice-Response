@@ -38,21 +38,21 @@
   bottom: 12vh;
 }
 
-.output{
+.output {
   position: fixed;
   bottom: 10vh;
   right: 10vw;
   overflow: auto;
   overflow-anchor: none;
-  /* scroll-behavior: auto; */
-  height: 52vh;
-  width: 35vh;
+  overflow-wrap: break-word;
+  height: 65vh;
+  width: 38vh;
 }
 
 .chat-border {
   position: fixed;
   bottom: 2.5vh;
   height: 80vh;
-  width: 36vw;
-  right: -2vw;
+  width: 33vw;
+  right: 4vw;
 }

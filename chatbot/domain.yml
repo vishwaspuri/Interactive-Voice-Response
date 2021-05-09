@@ -17,11 +17,15 @@ intents:
 - my_name
 - appointment_with
 - tell_time
+- cancel_meeting
+- update_meeting
+- show_meeting_details
 entities:
 - payment_id
 - user_name
 - appointment_with
 - time
+- appointed_with
 slots:
   payment_id:
     type: any
@@ -31,7 +35,15 @@ slots:
     type: any
   time:
     type: any
+  appointed_with:
+    type: any
 responses:
+  utter_cheer_up:
+  - text: 'You seem sad. Well, someone said, "Be happy for this moment, this moment is your life.".'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
   utter_greet:
   - text: Hi! How are you?
   utter_goodbye:
@@ -52,10 +64,14 @@ responses:
   - text: At what time do you wish to schedule your appointment?
   utter_appointment_confirmed:
   - text: Mr/Ms {User_name}, your appointment with {Appointment_with} is scheduled at {time} is confirmed.
+  utter_ask_appointed_with:
+  - text: Who are you appointed with?
 actions:
 - action_payment_status
 - action_create_appointment
+- action_cancel_appointment
 - validate_appointment_form
+- validate_cancel_appointment_form
 forms:
   payment_id_form:
     payment_id:
@@ -68,6 +84,16 @@ forms:
     appointment_with:
       - type: from_entity
         entity: appointment_with
+    time:
+      - type: from_entity
+        entity: time
+  cancel_appointment_form:
+    user_name:
+      - type: from_entity
+        entity: user_name
+    appointed_with:
+      - type: from_entity
+        entity: appointed_with
     time:
       - type: from_entity
         entity: time
