@@ -49,7 +49,7 @@ responses:
   utter_goodbye:
   - text: Bye
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+  - text: I am a AbI voice assistant, powered by Rasa.
   utter_let_me_check:
   - text: Let me check. Please tell me the payment id?
   utter_ask_payment_id:
@@ -61,7 +61,7 @@ responses:
   utter_ask_appointment_with:
   - text: With whom do you want your appointment with?
   utter_ask_time:
-  - text: At what time do you wish to schedule your appointment?
+  - text: Please tell me the appointment time.
   utter_appointment_confirmed:
   - text: Mr/Ms {User_name}, your appointment with {Appointment_with} is scheduled at {time} is confirmed.
   utter_ask_appointed_with:
